@@ -1,0 +1,23 @@
+{
+	"name": "ilg-arm-semihosting",
+	"description": "An xPack with ARM semihosting code.",
+	"version": "0.1.1",
+	"keywords": [
+		"posix",
+		"io",
+		"portable",
+		"xpack",
+		"xcdl"
+	],
+	"author": "Liviu Ionescu <ilg@livius.net>",
+	"homepage": "https://github.com/micro-os-plus/arm-semihosting",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/micro-os-plus/arm-semihosting.git"
+	},
+	"bugs": {
+		"url": "https://github.com/micro-os-plus/arm-semihosting/issues"
+	},
+	"license": "LGPL-3.0",
+	"dependencies": {}
+}
