@@ -28,7 +28,7 @@
 		<link>
 			<name>src/c-newlib-reent.cpp</name>
 			<type>1</type>
-			<location>/Users/ilg/My Files/MacBookPro Projects/uOS/micro-os-plus-iiie.git/ilg/portable/posix-io-xpack/src/c-newlib-reent.cpp</location>
+			<location>/Users/ilg/My Files/MacBookPro Projects/uOS/micro-os-plus-iiie.git/ilg/portable/posix-io-xpack/src/newlib/c-newlib-reent.cpp</location>
 		</link>
 	</linkedResources>
 </projectDescription>
