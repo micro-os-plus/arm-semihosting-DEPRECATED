@@ -40,7 +40,7 @@ namespace os
     void
     initialize (void)
     {
-      ; // For semihosting, no inits are required.
+      // For semihosting, no inits are required.
     }
 
     // ------------------------------------------------------------------------
@@ -72,7 +72,7 @@ namespace os
     // ------------------------------------------------------------------------
 
     ssize_t
-    write (const char* buf, std::size_t nbyte)
+    write (const void* buf, std::size_t nbyte)
     {
       static int handle; // STATIC!
 

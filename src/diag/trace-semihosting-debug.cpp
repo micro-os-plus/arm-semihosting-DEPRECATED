@@ -40,7 +40,7 @@ namespace os
     void
     initialize (void)
     {
-      ; // For semihosting, no inits are required.
+      // For semihosting, no inits are required.
     }
 
     // ------------------------------------------------------------------------
@@ -76,14 +76,16 @@ namespace os
 #endif
 
     ssize_t
-    write (const char* buf, std::size_t nbyte)
+    write (const void* buf, std::size_t nbyte)
     {
+      const char* cbuf = (const char*) buf;
+
       // Since the single character debug channel is quite slow, try to
       // optimise and send a null terminated string, if possible.
-      if (buf[nbyte] == '\0')
+      if (cbuf[nbyte] == '\0')
         {
           // send string
-          call_host (SEMIHOSTING_SYS_WRITE0, (void*) buf);
+          call_host (SEMIHOSTING_SYS_WRITE0, (void*) cbuf);
         }
       else
         {
@@ -96,9 +98,9 @@ namespace os
             {
               unsigned int n = ((togo < sizeof(tmp)) ? togo : sizeof(tmp));
               unsigned int i = 0;
-              for (; i < n; ++i, ++buf)
+              for (; i < n; ++i, ++cbuf)
                 {
-                  tmp[i] = *buf;
+                  tmp[i] = *cbuf;
                 }
               tmp[i] = '\0';
 
