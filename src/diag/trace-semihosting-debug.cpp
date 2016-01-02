@@ -17,6 +17,7 @@
  */
 
 #if defined(TRACE)
+#if defined(OS_USE_TRACE_SEMIHOSTING_DEBUG)
 
 #include "diag/trace.h"
 
@@ -107,13 +108,14 @@ namespace os
             }
         }
 
-      // All bytes written
+      // All bytes written.
       return (ssize_t) nbyte;
     }
 
   } /* namespace trace */
 } /* namespace os */
 
+#endif /* defined(OS_USE_TRACE_SEMIHOSTING_DEBUG) */
 #endif /* defined(TRACE) */
 
 // ----------------------------------------------------------------------------

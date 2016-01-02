@@ -17,6 +17,7 @@
  */
 
 #if defined(TRACE)
+#if defined(OS_USE_TRACE_SEMIHOSTING_STDOUT)
 
 #include "diag/trace.h"
 
@@ -80,10 +81,12 @@ namespace os
 
       if (handle == 0)
         {
-          // On the first call get the file handle from the host
-          block[0] = (void*) ":tt"; // special filename for stdin/out/err
+          // On the very first call get the file handle from the host.
+
+          // Special filename for stdin/out/err.
+          block[0] = (void*) ":tt";
           block[1] = (void*) 4; // mode "w"
-          // length of ":tt", except null terminator
+          // Length of ":tt", except null terminator.
           block[2] = (void*) (sizeof(":tt") - 1);
 
           ret = call_host (SEMIHOSTING_SYS_OPEN, (void*) block);
@@ -96,25 +99,26 @@ namespace os
       block[0] = (void*) handle;
       block[1] = (void*) buf;
       block[2] = (void*) nbyte;
-      // send character array to host file/device
+      // Send character array to host file/device.
       ret = call_host (SEMIHOSTING_SYS_WRITE, (void*) block);
-      // this call returns the number of bytes NOT written (0 if all ok)
+      // This call returns the number of bytes NOT written (0 if all ok).
 
       // -1 is not a legal value, but SEGGER seems to return it
       if (ret == -1)
         return -1;
 
-      // The compliant way of returning errors
+      // The compliant way of returning errors.
       if (ret == (int) nbyte)
         return -1;
 
-      // Return the number of bytes written
+      // Return the number of bytes written.
       return (ssize_t) (nbyte) - (ssize_t) ret;
     }
 
   } /* namespace trace */
 } /* namespace os */
 
+#endif /* defined(OS_USE_TRACE_SEMIHOSTING_STDOUT) */
 #endif /* defined(TRACE) */
 
 // ----------------------------------------------------------------------------
