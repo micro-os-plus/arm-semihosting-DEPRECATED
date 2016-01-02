@@ -1220,24 +1220,29 @@ initialise_monitor_handles (void)
 
 // ----------------------------------------------------------------------------
 
+#if defined(__ARM_EABI__) && (__STDC_HOSTED__ != 0)
+
 // The aliases must be in the same compilation unit as the names
 // they alias.
 
-#if defined(OS_INCLUDE_STANDARD_POSIX_FUNCTIONS)
+#if defined(OS_INCLUDE_NEWLIB_POSIX_FUNCTIONS)
 
-// For embedded environment that use POSIX system calls, redefine
-// all functions without the '__posix_' prefix.
+// For special embedded environment that use POSIX system calls
+// with the newlib reentrant code, redefine
+// some functions with _name(), others directly with name().
 
-#include "posix-io/standard-aliases.h"
+#include "posix-io/newlib-aliases.h"
 
-#elif defined(OS_INCLUDE_NEWLIB_POSIX_FUNCTIONS)
+#else
 
-// For embedded environment that use POSIX system calls, redefine
-// some functions with _name(), some directly with name().
+// For regular embedded environment that use POSIX system calls,
+// redefine **all** functions without the '__posix_' prefix.
 
 #include "posix-io/standard-aliases.h"
 
 #endif
+
+#endif /* defined(__ARM_EABI__) && (__STDC_HOSTED__ != 0) */
 
 // ----------------------------------------------------------------------------
 
