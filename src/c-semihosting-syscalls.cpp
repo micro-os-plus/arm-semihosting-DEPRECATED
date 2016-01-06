@@ -16,6 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if defined(OS_USE_SEMIHOSTING)
+
 #include "arm/semihosting.h"
 
 #include "posix-io/types.h"
@@ -1243,6 +1245,8 @@ initialise_monitor_handles (void)
 #endif
 
 #endif /* defined(__ARM_EABI__) && (__STDC_HOSTED__ != 0) */
+
+#endif /* #if defined(OS_USE_SEMIHOSTING) */
 
 // ----------------------------------------------------------------------------
 
